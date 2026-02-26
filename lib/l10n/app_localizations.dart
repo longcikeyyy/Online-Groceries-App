@@ -103,6 +103,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Get Started'**
   String get getStarted;
+
+  /// No description provided for @greeting.
+  ///
+  /// In en, this message translates to:
+  /// **'Greeting'**
+  String get greeting;
 }
 
 class _AppLocalizationsDelegate
