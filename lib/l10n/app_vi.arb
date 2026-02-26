@@ -1,4 +1,5 @@
 {
     "@@locale": "vi",
-    "getStarted": "Bắt đầu"
+    "getStarted": "Bắt đầu",
+    "greeting": "Chào mừng"
 }

@@ -10,4 +10,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get getStarted => 'Bắt đầu';
+
+  @override
+  String get greeting => 'Chào mừng';
 }
