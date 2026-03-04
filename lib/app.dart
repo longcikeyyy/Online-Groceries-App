@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:online_groceries_app/core/assets_gen/assets.gen.dart';
-import 'package:online_groceries_app/presentation/screens/onboarding/onboarding_screen.dart';
+import 'package:online_groceries_app/presentation/screens/login/login_screen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const OnboardingScreen(),
+      home: const LoginScreen(),
     );
   }
 }

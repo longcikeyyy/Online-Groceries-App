@@ -5,5 +5,4 @@ output-localization-file: app_localizations.dart
 output-class: AppLocalizations
 # Optional configurations below
 output-dir: lib/l10n
-synthetic-package: false
 format: true # Defaults to true, formats generated Dart files with dart format

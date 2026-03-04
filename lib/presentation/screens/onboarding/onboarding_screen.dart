@@ -5,6 +5,8 @@ class OnboardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: Center(child: Text('Onboarding Screen')));
+    return const Scaffold(
+      backgroundColor: Color(0xFF53B175),
+      body: Center(child: Text('Onboarding Screen')));
   }
 }
