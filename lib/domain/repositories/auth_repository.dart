@@ -1,4 +1,5 @@
 import 'package:online_groceries_app/domain/core/result.dart';
+import 'package:online_groceries_app/domain/entities/user_info_entity.dart';
 import 'package:online_groceries_app/domain/value_object/login_credentials.dart';
 import 'package:online_groceries_app/domain/entities/login_entity.dart';
 
@@ -21,4 +22,6 @@ abstract class IAuthRepository {
   /// Throws authentication-related exceptions if the login process
   /// encounters any issues.
   ResultFuture<LoginEntity> login(LoginCredentials credentials);
+
+  ResultFuture<UserInfoEntity> getUserInfo();
 }

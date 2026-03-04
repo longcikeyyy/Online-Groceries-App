@@ -35,6 +35,8 @@ import 'package:online_groceries_app/domain/repositories/auth_repository.dart'
     as _i643;
 import 'package:online_groceries_app/domain/repositories/local_storage_repository.dart'
     as _i284;
+import 'package:online_groceries_app/domain/usecase/get_user_info_usecase.dart'
+    as _i727;
 import 'package:online_groceries_app/domain/usecase/login_user_usecase.dart'
     as _i755;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
@@ -116,6 +118,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i755.LoginUserUsecase>(
       () => domainModule.loginUserUsecase(gh<_i643.IAuthRepository>()),
+    );
+    gh.factory<_i727.GetUserInfoUsecase>(
+      () => domainModule.getUserInfoUsecase(gh<_i643.IAuthRepository>()),
     );
     return this;
   }

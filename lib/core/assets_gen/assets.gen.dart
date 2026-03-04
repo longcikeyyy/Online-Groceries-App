@@ -47,6 +47,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_box.png
   AssetGenImage get icBox => const AssetGenImage('assets/icons/ic_box.png');
 
+  /// File path: assets/icons/ic_carrot.png
+  AssetGenImage get icCarrot =>
+      const AssetGenImage('assets/icons/ic_carrot.png');
+
   /// File path: assets/icons/ic_chart.svg
   SvgGenImage get icChart => const SvgGenImage('assets/icons/ic_chart.svg');
 
@@ -71,6 +75,7 @@ class $AssetsIconsGen {
     icAdd,
     icBonus,
     icBox,
+    icCarrot,
     icChart,
     icFavorites,
     icFavourites,

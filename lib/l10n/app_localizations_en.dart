@@ -13,4 +13,31 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get greeting => 'Greeting';
+
+  @override
+  String get orders => 'Orders';
+
+  @override
+  String get myDetails => 'My Details';
+
+  @override
+  String get deliveryAddress => 'Delivery Address';
+
+  @override
+  String get paymentMethods => 'Payment Methods';
+
+  @override
+  String get promoCard => 'Promo Card';
+
+  @override
+  String get notifications => 'Notifecations';
+
+  @override
+  String get help => 'Help';
+
+  @override
+  String get language => 'Language';
+
+  @override
+  String get about => 'About';
 }

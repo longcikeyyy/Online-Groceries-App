@@ -50,10 +50,6 @@ class _LoginScreenViewState extends State<_LoginScreenView> {
       appBar: AppBar(title: Image.asset('assets/icons/ic_carrot.png')),
       body: BlocConsumer<LoginBloc, LoginState>(
         listener: (context, state) {
-          print(
-            'LoginScreen listener - isSuccess: ${state.isSuccess}, isLoading: ${state.isLoading}, error: ${state.apiErrorMessage}',
-          );
-
           if (state.apiErrorMessage.isNotEmpty) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
@@ -64,8 +60,7 @@ class _LoginScreenViewState extends State<_LoginScreenView> {
             context.read<LoginBloc>().add(OnClearLoginErrorMessage());
           }
           if (state.isSuccess) {
-            print('LoginScreen - Navigating to account screen');
-            context.goNamed(RouteName.accountName);
+            context.goNamed(RouteName.bottomTabName);
           }
         },
         builder: (context, state) {
@@ -105,8 +100,22 @@ class _LoginScreenViewState extends State<_LoginScreenView> {
                     /// TextField for password
                     TextField(
                       controller: _passwordController,
-                      obscureText: true,
-                      decoration: const InputDecoration(labelText: 'Password'),
+                      obscureText: !state.isPasswordVisible,
+                      decoration: InputDecoration(
+                        labelText: 'Password',
+                        suffixIcon: InkWell(
+                          onTap: () {
+                            context.read<LoginBloc>().add(
+                              OnTogglePasswordVisibilityEvent(),
+                            );
+                          },
+                          child: Icon(
+                            state.isPasswordVisible
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                          ),
+                        ),
+                      ),
                     ),
                     const SizedBox(height: 24),
 

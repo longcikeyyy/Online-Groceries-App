@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:online_groceries_app/presentation/routes/route_name.dart';
 import 'package:online_groceries_app/presentation/screens/account/account_screen.dart';
+import 'package:online_groceries_app/presentation/screens/bottom_tab/bottom_tab.dart';
 import 'package:online_groceries_app/presentation/screens/login/login_screen.dart';
 import 'package:online_groceries_app/presentation/screens/splash/splash_screen.dart';
 
@@ -38,6 +39,11 @@ class AppRouter {
         path: RouteName.accountPath,
         name: RouteName.accountName,
         builder: (context, state) => const AccountScreen(),
+      ),
+      GoRoute(
+        path: RouteName.bottomTabPath,
+        name: RouteName.bottomTabName,
+        builder: (context, state) => const BottomTab(),
       ),
     ],
   );

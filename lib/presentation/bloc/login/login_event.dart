@@ -8,3 +8,5 @@ class OnLoginEvent extends LoginEvent {
 }
 
 class OnClearLoginErrorMessage extends LoginEvent {}
+
+class OnTogglePasswordVisibilityEvent extends LoginEvent {}

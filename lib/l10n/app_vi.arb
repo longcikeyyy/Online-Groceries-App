@@ -1,5 +1,14 @@
 {
     "@@locale": "vi",
     "getStarted": "Bắt đầu",
-    "greeting": "Chào mừng"
+    "greeting": "Chào mừng",
+    "orders": "Đơn hàng",
+    "myDetails": "Thông tin của tôi",
+    "deliveryAddress": "Địa chỉ giao hàng",
+    "paymentMethods": "Phương thức thanh toán",
+    "promoCard": "Mã khuyến mãi",
+    "notifications": "Thông báo",
+    "help": "Trợ giúp",
+    "language": "Ngôn ngữ",
+    "about": "Giới thiệu"
 }

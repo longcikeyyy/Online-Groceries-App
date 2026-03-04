@@ -1,5 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:online_groceries_app/domain/repositories/auth_repository.dart';
+import 'package:online_groceries_app/domain/usecase/get_user_info_usecase.dart';
 import 'package:online_groceries_app/domain/usecase/login_user_usecase.dart';
 
 /// Domain module that provides dependency injection for use cases.
@@ -17,5 +18,8 @@ abstract class DomainModule {
     return LoginUserUsecase(repo);
   }
 
-  // ... other use cases
+  @Injectable()
+  GetUserInfoUsecase getUserInfoUsecase(IAuthRepository repo) {
+    return GetUserInfoUsecase(repo);
+  }
 }

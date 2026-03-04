@@ -2,8 +2,10 @@ import 'package:injectable/injectable.dart';
 import 'package:online_groceries_app/data/core/guard.dart';
 import 'package:online_groceries_app/data/datasources/remote/api_service.dart';
 import 'package:online_groceries_app/data/mappers/login_mapper.dart';
+import 'package:online_groceries_app/data/mappers/user_info_mapper.dart';
 import 'package:online_groceries_app/data/models/request/login_request.dart';
 import 'package:online_groceries_app/domain/core/result.dart';
+import 'package:online_groceries_app/domain/entities/user_info_entity.dart';
 import 'package:online_groceries_app/domain/value_object/login_credentials.dart';
 import 'package:online_groceries_app/domain/entities/login_entity.dart';
 import 'package:online_groceries_app/domain/repositories/auth_repository.dart';
@@ -30,6 +32,14 @@ class AuthRepositoryImpl extends IAuthRepository {
         password: credentials.password,
       );
       final dto = await _apiService.login(request);
+      return dto.toEntity();
+    });
+  }
+
+  @override
+  ResultFuture<UserInfoEntity> getUserInfo() {
+    return guardDio<UserInfoEntity>(() async {
+      final dto = await _apiService.getUserInfo();
       return dto.toEntity();
     });
   }
