@@ -5,10 +5,13 @@ extension ShopInfoMapper on ProductDto {
   ShopInfoEntity toEntity() {
     return ShopInfoEntity(
       id: id,
-      title: title,
+      title: title ?? '---',
       price: price.toString(),
       weight: weight.toString(),
-      imageUrl: thumbnail,
+      imageUrl:
+          thumbnail ??
+          'https://cdn.dummyjson.com/product-images/groceries/apple/thumbnail.webp',
+      category: category ?? 'Others',
     );
   }
 }

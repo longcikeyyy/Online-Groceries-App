@@ -1,10 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_groceries_app/domain/core/usecase.dart';
+import 'package:online_groceries_app/domain/entities/shop_info_entity.dart';
 import 'package:online_groceries_app/domain/usecase/get_shop_info_usecase.dart';
 import 'package:online_groceries_app/presentation/bloc/shop/shop_event.dart';
 import 'package:online_groceries_app/presentation/bloc/shop/shop_state.dart';
 import 'package:online_groceries_app/presentation/error/failure_mapper.dart';
-
 
 class ShopBloc extends Bloc<ShopEvent, ShopState> {
   final GetShopInfoUsecase _getShopInfoUsecase;
@@ -33,7 +33,26 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
         },
         (success) {
           // success is List<ShopInfoEntity>
-          emit(state.copyWith(isLoading: false, shopInfoList: success));
+          // Group items by category
+          final Map<String, List<ShopInfoEntity>> groupedByCategory = {};
+          for (var item in success) {
+            if (!groupedByCategory.containsKey(item.category)) {
+              groupedByCategory[item.category] = [];
+            }
+            groupedByCategory[item.category]!.add(item);
+          }
+
+          // Convert to List<Map<String, List<ShopInfoEntity>>>
+          final categorizedShopInfoList = groupedByCategory.entries
+              .map((entry) => {entry.key: entry.value})
+              .toList();
+
+          emit(
+            state.copyWith(
+              isLoading: false,
+              categorizedShopInfoList: categorizedShopInfoList,
+            ),
+          );
         },
       );
     } catch (e) {

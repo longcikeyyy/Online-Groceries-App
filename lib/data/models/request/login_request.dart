@@ -29,7 +29,11 @@ part 'login_request.g.dart';
 /// ```
 @JsonSerializable()
 class LoginRequest extends LoginCredentials {
-  LoginRequest({required super.username, required super.password});
+  LoginRequest({
+    required super.username,
+    required super.password,
+    required super.expiresInMins,
+  });
 
   factory LoginRequest.fromJson(Map<String, dynamic> json) =>
       _$LoginRequestFromJson(json);

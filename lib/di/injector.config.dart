@@ -27,6 +27,8 @@ import 'package:online_groceries_app/data/repositories/auth_repository_impl.dart
     as _i850;
 import 'package:online_groceries_app/data/repositories/local_storage_impl.dart'
     as _i522;
+import 'package:online_groceries_app/data/repositories/product_repository_impl.dart'
+    as _i411;
 import 'package:online_groceries_app/di/domain_module.dart' as _i50;
 import 'package:online_groceries_app/di/env_module.dart' as _i788;
 import 'package:online_groceries_app/di/third_party_module.dart' as _i801;
@@ -35,16 +37,14 @@ import 'package:online_groceries_app/domain/repositories/auth_repository.dart'
     as _i643;
 import 'package:online_groceries_app/domain/repositories/local_storage_repository.dart'
     as _i284;
+import 'package:online_groceries_app/domain/repositories/product_repository.dart'
+    as _i900;
 import 'package:online_groceries_app/domain/usecase/get_shop_info_usecase.dart'
     as _i854;
 import 'package:online_groceries_app/domain/usecase/get_user_info_usecase.dart'
     as _i727;
 import 'package:online_groceries_app/domain/usecase/login_user_usecase.dart'
     as _i755;
-import 'package:online_groceries_app/presentation/bloc/shop/shop_bloc.dart'
-    as _i906;
-import 'package:online_groceries_app/presentation/error/failure_mapper.dart'
-    as _i898;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
 const String _dev = 'dev';
@@ -122,20 +122,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i643.IAuthRepository>(
       () => _i850.AuthRepositoryImpl(gh<_i206.ApiService>()),
     );
+    gh.lazySingleton<_i900.IProductRepository>(
+      () => _i411.ProductRepositoryImpl(gh<_i206.ApiService>()),
+    );
+    gh.factory<_i854.GetShopInfoUsecase>(
+      () => domainModule.getShopInfoUsecase(gh<_i900.IProductRepository>()),
+    );
     gh.factory<_i755.LoginUserUsecase>(
       () => domainModule.loginUserUsecase(gh<_i643.IAuthRepository>()),
     );
     gh.factory<_i727.GetUserInfoUsecase>(
       () => domainModule.getUserInfoUsecase(gh<_i643.IAuthRepository>()),
-    );
-    gh.factory<_i854.GetShopInfoUsecase>(
-      () => domainModule.getShopInfoUsecase(gh<_i643.IAuthRepository>()),
-    );
-    gh.factory<_i906.ShopBloc>(
-      () => _i906.ShopBloc(
-        gh<_i854.GetShopInfoUsecase>(),
-        gh<_i898.FailureMapper>(),
-      ),
     );
     return this;
   }

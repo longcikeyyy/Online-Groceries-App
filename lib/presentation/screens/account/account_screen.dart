@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:online_groceries_app/core/assets_gen/assets.gen.dart';
 import 'package:online_groceries_app/di/injector.dart';
+import 'package:online_groceries_app/domain/repositories/local_storage_repository.dart';
 import 'package:online_groceries_app/domain/usecase/get_user_info_usecase.dart';
 import 'package:online_groceries_app/l10n/app_localizations.dart';
 import 'package:online_groceries_app/presentation/bloc/account/account_bloc.dart';
 import 'package:online_groceries_app/presentation/bloc/account/account_event.dart';
 import 'package:online_groceries_app/presentation/bloc/account/account_state.dart';
 import 'package:online_groceries_app/presentation/error/failure_mapper.dart';
+import 'package:online_groceries_app/presentation/routes/route_name.dart';
 import 'package:online_groceries_app/presentation/screens/locale/locale_bloc.dart';
 import 'package:online_groceries_app/presentation/screens/locale/locale_event.dart';
 import 'package:online_groceries_app/presentation/screens/locale/locale_state.dart';
@@ -159,6 +162,16 @@ class AccountScreenView extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 30.h),
+                  ElevatedButton(
+                    onPressed: () async {
+                      final localStoreage = getIt<ILocalStorage>();
+                      await localStoreage.setAccessToken('');
+                      if (context.mounted) {
+                        context.go(RouteName.loginPath);
+                      }
+                    },
+                    child: Text('Logout'),
+                  ),
                 ],
               ),
             );

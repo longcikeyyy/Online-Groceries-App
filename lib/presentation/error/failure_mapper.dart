@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:online_groceries_app/di/injector.dart';
 import 'package:online_groceries_app/domain/core/failures.dart';
+import 'package:online_groceries_app/domain/repositories/local_storage_repository.dart';
+import 'package:online_groceries_app/presentation/routes/route_name.dart';
 
 /// A utility class that maps different types of failures to user-friendly error messages.
 ///
@@ -46,6 +50,7 @@ class FailureMapper {
       case CacheFailure():
         return 'Cache Error';
       case UnauthorizedFailure():
+        handleUnauthorizedFailure();
         return 'Unauthorized Error';
       case ForbiddenFailure():
         return 'Forbidden Error';
@@ -56,5 +61,14 @@ class FailureMapper {
       default:
         return 'Unknown Failure';
     }
+  }
+
+  /// navigate to login screen if unauthorized error
+  void handleUnauthorizedFailure() {
+    if (!context.mounted) return;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      getIt<ILocalStorage>().setAccessToken('');
+      context.go(RouteName.loginPath);
+    });
   }
 }

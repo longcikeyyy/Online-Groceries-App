@@ -1,5 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:online_groceries_app/domain/repositories/auth_repository.dart';
+import 'package:online_groceries_app/domain/repositories/product_repository.dart';
 import 'package:online_groceries_app/domain/usecase/get_shop_info_usecase.dart';
 import 'package:online_groceries_app/domain/usecase/get_user_info_usecase.dart';
 import 'package:online_groceries_app/domain/usecase/login_user_usecase.dart';
@@ -25,7 +26,7 @@ abstract class DomainModule {
   }
 
   @Injectable()
-  GetShopInfoUsecase getShopInfoUsecase(IAuthRepository repo) {
+  GetShopInfoUsecase getShopInfoUsecase(IProductRepository repo) {
     return GetShopInfoUsecase(repo);
-}
+  }
 }
