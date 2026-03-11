@@ -35,10 +35,16 @@ import 'package:online_groceries_app/domain/repositories/auth_repository.dart'
     as _i643;
 import 'package:online_groceries_app/domain/repositories/local_storage_repository.dart'
     as _i284;
+import 'package:online_groceries_app/domain/usecase/get_shop_info_usecase.dart'
+    as _i854;
 import 'package:online_groceries_app/domain/usecase/get_user_info_usecase.dart'
     as _i727;
 import 'package:online_groceries_app/domain/usecase/login_user_usecase.dart'
     as _i755;
+import 'package:online_groceries_app/presentation/bloc/shop/shop_bloc.dart'
+    as _i906;
+import 'package:online_groceries_app/presentation/error/failure_mapper.dart'
+    as _i898;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
 const String _dev = 'dev';
@@ -121,6 +127,15 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i727.GetUserInfoUsecase>(
       () => domainModule.getUserInfoUsecase(gh<_i643.IAuthRepository>()),
+    );
+    gh.factory<_i854.GetShopInfoUsecase>(
+      () => domainModule.getShopInfoUsecase(gh<_i643.IAuthRepository>()),
+    );
+    gh.factory<_i906.ShopBloc>(
+      () => _i906.ShopBloc(
+        gh<_i854.GetShopInfoUsecase>(),
+        gh<_i898.FailureMapper>(),
+      ),
     );
     return this;
   }

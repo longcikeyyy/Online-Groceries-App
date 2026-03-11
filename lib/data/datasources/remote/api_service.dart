@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_groceries_app/data/models/request/login_request.dart';
 import 'package:online_groceries_app/data/models/response/login_dto.dart';
+import 'package:online_groceries_app/data/models/response/shop_info_dto.dart';
 import 'package:online_groceries_app/data/models/response/user_info_dto.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -25,4 +26,7 @@ abstract class ApiService {
 
   @GET('/auth/me')
   Future<UserInfoDto> getUserInfo();
+
+  @GET('/products')
+  Future<ShopInfoDto> getShopInfo();
 }

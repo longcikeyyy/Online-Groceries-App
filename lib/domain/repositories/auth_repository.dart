@@ -1,4 +1,5 @@
 import 'package:online_groceries_app/domain/core/result.dart';
+import 'package:online_groceries_app/domain/entities/shop_info_entity.dart';
 import 'package:online_groceries_app/domain/entities/user_info_entity.dart';
 import 'package:online_groceries_app/domain/value_object/login_credentials.dart';
 import 'package:online_groceries_app/domain/entities/login_entity.dart';
@@ -24,4 +25,10 @@ abstract class IAuthRepository {
   ResultFuture<LoginEntity> login(LoginCredentials credentials);
 
   ResultFuture<UserInfoEntity> getUserInfo();
+  
+  /// Retrieves a list of all shop products.
+  ///
+  /// Returns a [ResultFuture<List<ShopInfoEntity>>] containing a list of
+  /// all available products from the shop.
+  ResultFuture<List<ShopInfoEntity>> getShopInfo();
 }
