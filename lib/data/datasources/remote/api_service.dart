@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_groceries_app/data/models/request/login_request.dart';
+import 'package:online_groceries_app/data/models/response/favorite_cart_dto.dart';
 import 'package:online_groceries_app/data/models/response/login_dto.dart';
 import 'package:online_groceries_app/data/models/response/shop_info_dto.dart';
 import 'package:online_groceries_app/data/models/response/user_info_dto.dart';
@@ -29,4 +30,7 @@ abstract class ApiService {
 
   @GET('/products')
   Future<ShopInfoDto> getShopInfo();
+
+  @GET('/carts/{id}')
+  Future<CartDto> getCart(@Path('id') int id);
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:online_groceries_app/core/constants/app_text_style.dart';
 import 'package:online_groceries_app/di/injector.dart';
 import 'package:online_groceries_app/domain/usecase/get_shop_info_usecase.dart';
 import 'package:online_groceries_app/presentation/bloc/shop/shop_bloc.dart';
@@ -47,7 +48,7 @@ class ShopScreenView extends StatelessWidget {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(shopInfo.keys.first),
+                      Text(shopInfo.keys.first,style:AppTextStyle.tsSemiBold24), // Display category name
                       SizedBox(
                         height: 150,
                         width: 400,
@@ -58,10 +59,20 @@ class ShopScreenView extends StatelessWidget {
                           itemBuilder: (context, index) {
                             final item = shopInfo.values.first[index];
                             return Container(
+                              width: (174 / 414) * MediaQuery.of(context).size.width,
+                              height: (249 / 1553) * MediaQuery.of(context).size.height,
                               margin: const EdgeInsets.all(8),
                               decoration: BoxDecoration(
                                 border: Border.all(color: Colors.grey),
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(18),
+                                boxShadow:[
+                                  BoxShadow(
+                                    color: Colors.black.withValues(alpha:0),
+                                    spreadRadius: 0,
+                                    blurRadius: 12,
+                                    offset: const Offset(0, 6), // changes position of shadow
+                                  ),
+                                ]
                               ),
                               child: Column(
                                 children: [

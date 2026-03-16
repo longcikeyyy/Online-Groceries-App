@@ -25,6 +25,8 @@ import 'package:online_groceries_app/data/datasources/remote/api_service.dart'
     as _i206;
 import 'package:online_groceries_app/data/repositories/auth_repository_impl.dart'
     as _i850;
+import 'package:online_groceries_app/data/repositories/favorite_cart_repository_impl.dart'
+    as _i435;
 import 'package:online_groceries_app/data/repositories/local_storage_impl.dart'
     as _i522;
 import 'package:online_groceries_app/data/repositories/product_repository_impl.dart'
@@ -35,16 +37,22 @@ import 'package:online_groceries_app/di/third_party_module.dart' as _i801;
 import 'package:online_groceries_app/domain/core/app_logger.dart' as _i596;
 import 'package:online_groceries_app/domain/repositories/auth_repository.dart'
     as _i643;
+import 'package:online_groceries_app/domain/repositories/favorite_cart_repository.dart'
+    as _i1038;
 import 'package:online_groceries_app/domain/repositories/local_storage_repository.dart'
     as _i284;
 import 'package:online_groceries_app/domain/repositories/product_repository.dart'
     as _i900;
+import 'package:online_groceries_app/domain/usecase/get_favorite_cart_usecase.dart'
+    as _i632;
 import 'package:online_groceries_app/domain/usecase/get_shop_info_usecase.dart'
     as _i854;
 import 'package:online_groceries_app/domain/usecase/get_user_info_usecase.dart'
     as _i727;
 import 'package:online_groceries_app/domain/usecase/login_user_usecase.dart'
     as _i755;
+import 'package:online_groceries_app/presentation/bloc/favorite/favorite_bloc.dart'
+    as _i295;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
 const String _dev = 'dev';
@@ -119,8 +127,17 @@ extension GetItInjectableX on _i174.GetIt {
       ),
     );
     gh.lazySingleton<_i206.ApiService>(() => _i206.ApiService(gh<_i361.Dio>()));
+    gh.lazySingleton<_i1038.IFavoriteCartRepository>(
+      () => _i435.FavoriteCartRepositoryImpl(gh<_i206.ApiService>()),
+    );
+    gh.factory<_i632.GetFavoriteCartUsecase>(
+      () => _i632.GetFavoriteCartUsecase(gh<_i1038.IFavoriteCartRepository>()),
+    );
     gh.lazySingleton<_i643.IAuthRepository>(
       () => _i850.AuthRepositoryImpl(gh<_i206.ApiService>()),
+    );
+    gh.factory<_i295.FavoriteBloc>(
+      () => _i295.FavoriteBloc(gh<_i632.GetFavoriteCartUsecase>()),
     );
     gh.lazySingleton<_i900.IProductRepository>(
       () => _i411.ProductRepositoryImpl(gh<_i206.ApiService>()),
