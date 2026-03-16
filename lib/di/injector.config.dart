@@ -47,12 +47,12 @@ import 'package:online_groceries_app/domain/usecase/get_favorite_cart_usecase.da
     as _i632;
 import 'package:online_groceries_app/domain/usecase/get_shop_info_usecase.dart'
     as _i854;
+import 'package:online_groceries_app/domain/usecase/get_user_carts_usecase.dart'
+    as _i204;
 import 'package:online_groceries_app/domain/usecase/get_user_info_usecase.dart'
     as _i727;
 import 'package:online_groceries_app/domain/usecase/login_user_usecase.dart'
     as _i755;
-import 'package:online_groceries_app/presentation/bloc/favorite/favorite_bloc.dart'
-    as _i295;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
 const String _dev = 'dev';
@@ -131,13 +131,17 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i435.FavoriteCartRepositoryImpl(gh<_i206.ApiService>()),
     );
     gh.factory<_i632.GetFavoriteCartUsecase>(
-      () => _i632.GetFavoriteCartUsecase(gh<_i1038.IFavoriteCartRepository>()),
+      () => domainModule.getFavoriteCartUsecase(
+        gh<_i1038.IFavoriteCartRepository>(),
+      ),
+    );
+    gh.factory<_i204.GetUserCartsUsecase>(
+      () => domainModule.getUserCartsUsecase(
+        gh<_i1038.IFavoriteCartRepository>(),
+      ),
     );
     gh.lazySingleton<_i643.IAuthRepository>(
       () => _i850.AuthRepositoryImpl(gh<_i206.ApiService>()),
-    );
-    gh.factory<_i295.FavoriteBloc>(
-      () => _i295.FavoriteBloc(gh<_i632.GetFavoriteCartUsecase>()),
     );
     gh.lazySingleton<_i900.IProductRepository>(
       () => _i411.ProductRepositoryImpl(gh<_i206.ApiService>()),

@@ -7,6 +7,7 @@ import 'package:online_groceries_app/domain/usecase/get_favorite_cart_usecase.da
 import 'package:online_groceries_app/presentation/bloc/favorite/favorite_bloc.dart';
 import 'package:online_groceries_app/presentation/bloc/favorite/favorite_event.dart';
 import 'package:online_groceries_app/presentation/bloc/favorite/favorite_state.dart';
+import 'package:online_groceries_app/presentation/error/failure_mapper.dart';
 
 class FavoriteScreen extends StatelessWidget {
   const FavoriteScreen({super.key});
@@ -15,7 +16,7 @@ class FavoriteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          FavoriteBloc(getIt<GetFavoriteCartUsecase>())
+          FavoriteBloc(getIt<GetFavoriteCartUsecase>(), FailureMapper(context))
             ..add(OnGetFavoriteProducts()),
       child: const FavoriteScreenView(),
     );
@@ -28,9 +29,7 @@ class FavoriteScreenView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Favorite',style:AppTextStyle.tsSemiBold24),
-      ),
+      appBar: AppBar(title: Text('Favorite', style: AppTextStyle.tsSemiBold24)),
       body: BlocBuilder<FavoriteBloc, FavoriteState>(
         builder: (context, state) {
           if (state.isLoading) {
@@ -55,7 +54,6 @@ class FavoriteScreenView extends StatelessWidget {
                 return Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    
                   ),
                   child: Row(
                     children: [
@@ -75,7 +73,7 @@ class FavoriteScreenView extends StatelessWidget {
                               width: 100,
                               height: 100,
                               color: Colors.grey[300],
-                              child:  Icon(Icons.image_not_supported),
+                              child: Icon(Icons.image_not_supported),
                             );
                           },
                         ),
@@ -100,12 +98,11 @@ class FavoriteScreenView extends StatelessWidget {
                               Text(
                                 'Qty: ${product.quantity}',
                                 style: TextStyle(
-                                  color:AppColor.greyColor,
+                                  color: AppColor.greyColor,
                                   fontSize: 12,
                                 ),
                               ),
                               const SizedBox(height: 8),
-                              
                             ],
                           ),
                         ),
@@ -114,17 +111,14 @@ class FavoriteScreenView extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                                '\$${product.price}',
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                  color: AppColor.blackColor
-                                ),
-                              ),
-                          Icon(
-                            Icons.chevron_right,
-                            color: AppColor.blackColor,
+                            '\$${product.price}',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                              color: AppColor.blackColor,
+                            ),
                           ),
+                          Icon(Icons.chevron_right, color: AppColor.blackColor),
                         ],
                       ),
                     ],

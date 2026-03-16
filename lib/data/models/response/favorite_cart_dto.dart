@@ -10,6 +10,7 @@ class CartDto {
   final double total;
   final double discountedTotal;
   final int userId;
+  final int totalProducts;
   final int totalQuantity;
 
   CartDto({
@@ -18,6 +19,7 @@ class CartDto {
     required this.total,
     required this.discountedTotal,
     required this.userId,
+    required this.totalProducts,
     required this.totalQuantity,
   });
 
