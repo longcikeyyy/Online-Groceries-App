@@ -3,6 +3,7 @@ import 'package:online_groceries_app/presentation/routes/route_name.dart';
 import 'package:online_groceries_app/presentation/screens/account/account_screen.dart';
 import 'package:online_groceries_app/presentation/screens/bottom_tab/bottom_tab.dart';
 import 'package:online_groceries_app/presentation/screens/login/login_screen.dart';
+import 'package:online_groceries_app/presentation/screens/product_detail/product_detail_screen.dart';
 import 'package:online_groceries_app/presentation/screens/splash/splash_screen.dart';
 
 /// A centralized router configuration class for the application using GoRouter.
@@ -44,6 +45,14 @@ class AppRouter {
         path: RouteName.bottomTabPath,
         name: RouteName.bottomTabName,
         builder: (context, state) => const BottomTab(),
+      ),
+      GoRoute(
+        path: RouteName.productDetailPath,
+        name: RouteName.productDetailName,
+        builder: (context, state) {
+          final id = int.parse(state.pathParameters['id']!);
+          return ProductDetailScreen(productId: id);
+        },
       ),
     ],
   );
