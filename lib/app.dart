@@ -7,6 +7,8 @@ import 'package:online_groceries_app/presentation/routes/app_router.dart';
 import 'package:online_groceries_app/presentation/screens/locale/locale_bloc.dart';
 import 'package:online_groceries_app/presentation/screens/locale/locale_state.dart';
 
+/// Your Power = Your Knowledge * AI Power * Prompting Skills
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 

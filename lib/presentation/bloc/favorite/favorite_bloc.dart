@@ -1,16 +1,16 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:injectable/injectable.dart';
-import 'package:online_groceries_app/domain/core/failures.dart';
 import 'package:online_groceries_app/domain/usecase/get_favorite_cart_usecase.dart';
 import 'package:online_groceries_app/presentation/bloc/favorite/favorite_event.dart';
 import 'package:online_groceries_app/presentation/bloc/favorite/favorite_state.dart';
+import 'package:online_groceries_app/presentation/error/failure_mapper.dart';
 
 /// BLoC for managing favorite cart (products in cart).
-@injectable
 class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
   final GetFavoriteCartUsecase _getFavoriteCartUsecase;
+  final FailureMapper _failureMapper;
 
-  FavoriteBloc(this._getFavoriteCartUsecase) : super(const FavoriteState()) {
+  FavoriteBloc(this._getFavoriteCartUsecase, this._failureMapper)
+    : super(const FavoriteState()) {
     on<OnGetFavoriteProducts>(_getFavoriteProducts);
   }
 
@@ -29,7 +29,7 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
           emit(
             state.copyWith(
               isLoading: false,
-              apiErrorMessage: _mapFailureToMessage(failure),
+              apiErrorMessage: _failureMapper.mapFailureToMessage(failure),
             ),
           );
         },
@@ -41,23 +41,9 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
       emit(
         state.copyWith(
           isLoading: false,
-          apiErrorMessage: 'An unexpected error occurred: ${e.toString()}',
+          apiErrorMessage: 'An unexpected error occurred.',
         ),
       );
     }
-  }
-
-  /// Maps failure objects to user-friendly error messages
-  String _mapFailureToMessage(Failures failure) {
-    return switch (failure) {
-      NetworkFailure() => 'Network connection failed. Please check your internet.',
-      ServerFailure(:final message) => message ?? 'Server error occurred.',
-      NoInternetConnectionFailure() => 'No internet connection. Please connect and try again.',
-      UnauthorizedFailure() => 'You are not authorized. Please login again.',
-      ForbiddenFailure() => 'Access forbidden.',
-      CacheFailure() => 'Cache error occurred.',
-      UnknownFailure() => 'An unknown error occurred.',
-      _ => 'An unexpected error occurred.',
-    };
   }
 }
