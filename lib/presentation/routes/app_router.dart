@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:online_groceries_app/presentation/routes/route_name.dart';
 import 'package:online_groceries_app/presentation/screens/account/account_screen.dart';
@@ -23,8 +24,11 @@ import 'package:online_groceries_app/presentation/screens/splash/splash_screen.d
 /// )
 /// ```
 class AppRouter {
+  static final navigatorKey = GlobalKey<NavigatorState>();
+
   static final router = GoRouter(
     initialLocation: RouteName.splashPath,
+    navigatorKey: navigatorKey,
     routes: [
       GoRoute(
         path: RouteName.splashPath,

@@ -1,9 +1,11 @@
+import 'package:chottu_link/chottu_link.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_groceries_app/core/assets_gen/assets.gen.dart';
 import 'package:online_groceries_app/l10n/app_localizations.dart';
 import 'package:online_groceries_app/presentation/routes/app_router.dart';
+import 'package:online_groceries_app/presentation/routes/route_name.dart';
 import 'package:online_groceries_app/presentation/screens/locale/locale_bloc.dart';
 import 'package:online_groceries_app/presentation/screens/locale/locale_state.dart';
 
@@ -21,8 +23,36 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyAppView extends StatelessWidget {
+class MyAppView extends StatefulWidget {
   const MyAppView({super.key});
+
+  @override
+  State<MyAppView> createState() => _MyAppViewState();
+}
+
+class _MyAppViewState extends State<MyAppView> {
+  @override
+  void initState() {
+    //// handle deep link when app is opened from a terminated state
+    /// /// 🔗 Listen for incoming dynamic links
+    ChottuLink.onLinkReceived.listen((String link) {
+      debugPrint(" ✅ Link Received: $link");
+
+      final uri = Uri.tryParse(link);
+      if (uri == null) return;
+
+      final productId = int.tryParse(uri.pathSegments.last);
+      if (productId == null) return;
+
+      // Navigate to BottomTab first so back button can return to it
+      AppRouter.router.goNamed(RouteName.bottomTabName);
+      AppRouter.router.pushNamed(
+        RouteName.productDetailName,
+        pathParameters: {'id': productId.toString()},
+      );
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

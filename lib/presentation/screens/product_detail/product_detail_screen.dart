@@ -1,3 +1,6 @@
+import 'package:chottu_link/chottu_link.dart';
+import 'package:chottu_link/dynamic_link/cl_dynamic_link_behaviour.dart';
+import 'package:chottu_link/dynamic_link/cl_dynamic_link_parameters.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -17,6 +20,7 @@ import 'package:online_groceries_app/presentation/screens/product_detail/widgets
 import 'package:online_groceries_app/presentation/screens/product_detail/widgets/product_quantity_selector.dart';
 import 'package:online_groceries_app/presentation/screens/product_detail/widgets/product_review_section.dart';
 import 'package:online_groceries_app/presentation/screens/product_detail/widgets/product_title_section.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   final int productId;
@@ -30,13 +34,14 @@ class ProductDetailScreen extends StatelessWidget {
         getIt<GetProductDetailUsecase>(),
         FailureMapper(context),
       )..add(OnGetProductDetail(productId)),
-      child: const ProductDetailScreenView(),
+      child: ProductDetailScreenView(productId: productId),
     );
   }
 }
 
 class ProductDetailScreenView extends StatelessWidget {
-  const ProductDetailScreenView({super.key});
+  final int productId;
+  const ProductDetailScreenView({super.key, required this.productId});
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +66,10 @@ class ProductDetailScreenView extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.ios_share, color: AppColor.textColor),
-            onPressed: () {},
+            onPressed: () {
+              /// create dynamic link and share
+              _shareProduct(context, productId);
+            },
           ),
         ],
       ),
@@ -83,6 +91,40 @@ class ProductDetailScreenView extends StatelessWidget {
           return ProductAddToBasketButton(onTap: () {});
         },
       ),
+    );
+  }
+
+  Future<void> _shareProduct(BuildContext context, int productId) async {
+    /// Create dynamic link parameters
+    /// /// https://kvonline1234.chottu.link/123
+    final parameters = CLDynamicLinkParameters(
+      link: Uri.parse(
+        "https://kvonline1234.chottu.link/$productId",
+      ), // Destination URL
+      domain: "kvonline1234.chottu.link", // Your ChottuLink domain
+      // Set behavior for Android & iOS
+      androidBehaviour: CLDynamicLinkBehaviour.app,
+      iosBehaviour: CLDynamicLinkBehaviour.app,
+    );
+
+    ChottuLink.createDynamicLink(
+      parameters: parameters,
+      onSuccess: (link) {
+        debugPrint("✅ Shared Link: $link"); // 🔗 Successfully created link
+        /// You can now share this link using any sharing method (e.g., Share package)
+        SharePlus.instance.share(ShareParams(uri: Uri.parse(link)));
+      },
+      onError: (error) {
+        debugPrint("❌ Error creating link: ${error.description}");
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Failed to create shareable link.')),
+        );
+        SharePlus.instance.share(
+          ShareParams(
+            uri: Uri.parse("https://kvonline1234.chottu.link/$productId"),
+          ),
+        );
+      },
     );
   }
 }
