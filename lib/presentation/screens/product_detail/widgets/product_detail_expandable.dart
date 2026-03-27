@@ -56,10 +56,7 @@ class _ProductDetailExpandableState extends State<ProductDetailExpandable> {
             ),
           ),
         ),
-        if (_isExpanded) ...[
-          widget.content,
-          const SizedBox(height: 16),
-        ],
+        if (_isExpanded) ...[widget.content, const SizedBox(height: 16)],
       ],
     );
   }

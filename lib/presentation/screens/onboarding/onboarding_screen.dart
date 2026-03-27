@@ -7,6 +7,7 @@ class OnboardingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       backgroundColor: Color(0xFF53B175),
-      body: Center(child: Text('Onboarding Screen')));
+      body: Center(child: Text('Onboarding Screen')),
+    );
   }
 }

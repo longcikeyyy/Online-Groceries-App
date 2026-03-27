@@ -42,7 +42,9 @@ class ProductTitleSection extends StatelessWidget {
             ),
             child: Icon(
               isFavorite ? Icons.favorite : Icons.favorite_border,
-              color: isFavorite ? AppColor.favoriteActiveColor : AppColor.greyColor,
+              color: isFavorite
+                  ? AppColor.favoriteActiveColor
+                  : AppColor.greyColor,
             ),
           ),
         ),

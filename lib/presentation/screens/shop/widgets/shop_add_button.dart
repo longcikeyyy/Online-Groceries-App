@@ -17,11 +17,7 @@ class ShopAddButton extends StatelessWidget {
           color: AppColor.greenColor,
           borderRadius: BorderRadius.circular(17),
         ),
-        child: const Icon(
-          Icons.add,
-          color: AppColor.whiteColor,
-          size: 26,
-        ),
+        child: const Icon(Icons.add, color: AppColor.whiteColor, size: 26),
       ),
     );
   }
