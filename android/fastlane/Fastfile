@@ -6,14 +6,13 @@ default_platform(:android)
 platform :android do
   desc "Build APK DEV and distribute to Firebase App Distribution"
   lane :distribute_android_dev_app_via_firebase do
-
     firebase_app_distribution(
       app: ENV["FIREBASE_ANDROID_APP_ID"],
       service_credentials_file: ENV["GOOGLE_APPLICATION_CREDENTIALS"],
       android_artifact_type: "APK",
       android_artifact_path: "../build/app/outputs/flutter-apk/app-dev-release.apk",
-      release_notes: "../app_distribution/release_note.txt",
-      groups: "../app_distribution/group.txt"
+      release_notes_file: "../app_distribution/release_note.txt",
+      groups_file: "../app_distribution/group.txt"
     )
   end
 end
