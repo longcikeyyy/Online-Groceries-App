@@ -69,7 +69,6 @@ android {
                 type = "string",
                 name = "app_name",
                 value = "Online Groceries App Dev")
-            applicationIdSuffix = ".dev"
         }
         create("staging") {
             dimension = "app"
