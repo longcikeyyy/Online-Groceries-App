@@ -1,3 +1,4 @@
+import 'package:chottu_link/chottu_link.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_groceries_app/app.dart';
@@ -17,6 +18,10 @@ import 'package:online_groceries_app/di/injector.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies(env: dev.name);
+
+  /// ✅ Initialize the ChottuLink SDK
+  /// Make sure to call this before using any ChottuLink features.
+  await ChottuLink.init(apiKey: "c_app_pU1yQjKDEW8DQ0QxFdOV2LBosbN3etjc");
 
   runApp(const MyApp());
 }

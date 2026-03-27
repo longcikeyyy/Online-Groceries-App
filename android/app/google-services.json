@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "615700767529",
+    "project_id": "online-groceries-eab22",
+    "storage_bucket": "online-groceries-eab22.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:615700767529:android:232f73eaa8622de3b2cd38",
+        "android_client_info": {
+          "package_name": "com.example.online_groceries_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArtIE5f3Fv0t-5c5whubDOuk5mezMOQMA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:615700767529:android:2a1aa8acdf316614b2cd38",
+        "android_client_info": {
+          "package_name": "com.example.online_groceries_app.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArtIE5f3Fv0t-5c5whubDOuk5mezMOQMA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
