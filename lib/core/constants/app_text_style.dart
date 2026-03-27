@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:online_groceries_app/core/constants/app_color.dart';
 
-
 class AppTextStyle {
   /// Regular -> 400
   /// Medium -> 500
@@ -15,7 +14,6 @@ class AppTextStyle {
     fontWeight: FontWeight.w400,
     color: AppColor.textColor,
   );
-  
 
   static TextStyle tsSemiBold24 = TextStyle(
     fontFamily: fontFamily,

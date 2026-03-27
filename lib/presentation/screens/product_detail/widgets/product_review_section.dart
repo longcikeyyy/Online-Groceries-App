@@ -19,9 +19,7 @@ class ProductReviewSection extends StatelessWidget {
     return ProductDetailExpandable(
       title: 'Review',
       content: Column(
-        children: reviews
-            .map((r) => _ReviewItem(review: r))
-            .toList(),
+        children: reviews.map((r) => _ReviewItem(review: r)).toList(),
       ),
       trailing: Row(
         children: [

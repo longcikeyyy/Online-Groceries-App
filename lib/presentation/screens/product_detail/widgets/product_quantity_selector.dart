@@ -18,17 +18,11 @@ class ProductQuantitySelector extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        _QuantityButton(
-          icon: Icons.remove,
-          onTap: onDecrement,
-        ),
+        _QuantityButton(icon: Icons.remove, onTap: onDecrement),
         const SizedBox(width: 16),
         Text(quantity.toString(), style: AppTextStyle.tsBold18),
         const SizedBox(width: 16),
-        _QuantityButton(
-          icon: Icons.add,
-          onTap: onIncrement,
-        ),
+        _QuantityButton(icon: Icons.add, onTap: onIncrement),
       ],
     );
   }

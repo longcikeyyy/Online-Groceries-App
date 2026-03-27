@@ -42,13 +42,13 @@ class FavoriteProductEntity extends Equatable {
 
   @override
   List<Object?> get props => [
-        id,
-        title,
-        price,
-        quantity,
-        total,
-        discountPercentage,
-        discountedTotal,
-        thumbnail,
-      ];
+    id,
+    title,
+    price,
+    quantity,
+    total,
+    discountPercentage,
+    discountedTotal,
+    thumbnail,
+  ];
 }

@@ -4,8 +4,7 @@ import 'package:online_groceries_app/presentation/bloc/product_detail/product_de
 import 'package:online_groceries_app/presentation/bloc/product_detail/product_detail_state.dart';
 import 'package:online_groceries_app/presentation/error/failure_mapper.dart';
 
-class ProductDetailBloc
-    extends Bloc<ProductDetailEvent, ProductDetailState> {
+class ProductDetailBloc extends Bloc<ProductDetailEvent, ProductDetailState> {
   final GetProductDetailUsecase _getProductDetailUsecase;
   final FailureMapper _failureMapper;
 
