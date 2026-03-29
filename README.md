@@ -19,6 +19,16 @@ A modern Flutter application built with **Clean Architecture** principles, featu
 
 This Online Grocery Store App is a production-ready Flutter application that demonstrates best practices in mobile app development. Built with **Clean Architecture**, it provides a scalable, maintainable, and testable codebase suitable for enterprise-level applications.
 
+## 📸 Screenshots
+
+<p align="center">
+  <img src="assets/images/1.png" alt="Home screen" width="200" />
+  <img src="assets/images/2.png" alt="Product details" width="200" />
+  <img src="assets/images/3.png" alt="Cart" width="200" />
+  <img src="assets/images/4.png" alt="Checkout" width="200" />
+  <img src="assets/images/5.png" alt="Order tracking" width="200" />
+</p>
+
 ### Key Highlights
 
 - ✅ **Clean Architecture** with proper layer separation
